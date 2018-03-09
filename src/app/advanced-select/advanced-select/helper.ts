@@ -15,12 +15,3 @@ export function getTagIndex(tags: Array<any>, selectedTag) {
     if (tag.id === selectedTag.id) return i
   }
 }
-
-
-export function getTagIndexByLabel(tags: Array<any>, label) {
-  for (let i = 0; i <  tags.length; i++) {
-    const tag = tags[i]
-
-    if (tag.label === selectedTag.label) return i
-  }
-}

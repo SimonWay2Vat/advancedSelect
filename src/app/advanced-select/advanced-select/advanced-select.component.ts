@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { mocksData } from './mocks/data'
 import { getTagIndex, isTagInArray } from './helper'
@@ -9,13 +9,18 @@ import { getTagIndex, isTagInArray } from './helper'
   templateUrl: './advanced-select.component.html'
 })
 export class AdvancedSelectComponent implements OnInit {
-  disableInput = false
   @Input() single = false
+
   @Input() placeHolder = ''
 
   inputControl: FormControl
 
+  @ViewChild('inputEl', { read: ElementRef }) inputEl: ElementRef
+
   options: any = mocksData
+
+  disableInput = false
+
 
   @Output() selectedChange = new EventEmitter()
   selectedValue = []
@@ -24,6 +29,7 @@ export class AdvancedSelectComponent implements OnInit {
   @Input() get selected() {
     return this.selectedValue
   }
+
 
   set selected(val) {
     this.selectedValue = val
@@ -51,6 +57,9 @@ export class AdvancedSelectComponent implements OnInit {
 
       if (this.single) this.disableInput = true
     }
+
+
+    this.afterSelect()
   }
 
 
@@ -63,5 +72,10 @@ export class AdvancedSelectComponent implements OnInit {
     this.selected = this.selectedValue
 
     this.disableInput = false
+  }
+
+
+  private afterSelect() {
+    this.inputEl.nativeElement.blur()
   }
 }
