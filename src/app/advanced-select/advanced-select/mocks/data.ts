@@ -1,7 +1,8 @@
 export const mocksData = [
   {
     label: 'item 1',
-    id: 1
+    id: 1,
+    color: '#673AB7'
   },
   {
     label: 'item 2',

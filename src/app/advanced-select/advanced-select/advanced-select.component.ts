@@ -14,6 +14,10 @@ export class AdvancedSelectComponent implements OnInit {
 
   @Input() placeHolder = ''
 
+
+  @Input() defaultColor = '#673AB7'
+
+
   inputControl: FormControl
 
   @ViewChild('inputEl', { read: ElementRef }) inputEl: ElementRef
@@ -30,6 +34,17 @@ export class AdvancedSelectComponent implements OnInit {
 
   @Input() get selected() {
     return this.selectedValue
+  }
+
+
+  getColor(tag) {
+    console.log('color for ', tag)
+
+
+    if (typeof tag.color === 'undefined') return this.defaultColor
+
+
+    return tag.color
   }
 
 

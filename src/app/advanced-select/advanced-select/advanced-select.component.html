@@ -34,8 +34,14 @@
 
 <mat-form-field style="width: 100%" (click)="click()">
   <mat-chip-list #chipList>
-    <mat-chip *ngFor="let tag of selectedValue" [selectable]="true"
-              [removable]="true" (remove)="remove(tag)">
+    <mat-chip *ngFor="let tag of selectedValue"
+              [selectable]="true"
+              [removable]="true"
+              (remove)="remove(tag)"
+              [ngStyle]="{
+              background: getColor(tag)
+              }"
+    >
       {{tag.label}}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
