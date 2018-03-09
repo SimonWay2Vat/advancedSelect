@@ -1,5 +1,5 @@
 <mat-form-field style="width: 100%" (click)="click()">
-  <mat-icon class="singleSelectIcon">arrow_drop_down</mat-icon>
+  <mat-icon class="selectIcon">arrow_drop_down</mat-icon>
   <mat-chip-list #chipList>
     <mat-chip *ngFor="let tag of selectedValue"
               [selectable]="true"
@@ -24,6 +24,7 @@
       [matChipInputFor]="chipList"
       [matChipInputAddOnBlur]="true"
       [hidden]="disableInput"
+      (blur)="afterAdd()"
     />
   </mat-chip-list>
 

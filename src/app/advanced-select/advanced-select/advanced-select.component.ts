@@ -57,6 +57,9 @@ export class AdvancedSelectComponent implements OnInit {
 
   ngOnInit() {
     if (this.selected.length && this.single) this.disableInput = true
+
+
+    this.filterResultsWatcher()
   }
 
 
@@ -76,7 +79,12 @@ export class AdvancedSelectComponent implements OnInit {
     }
 
 
-    this.afterSelect()
+    this.afterAdd()
+  }
+
+
+  afterAdd() {
+    this.inputEl.nativeElement.value = ''
   }
 
 
@@ -97,7 +105,14 @@ export class AdvancedSelectComponent implements OnInit {
   }
 
 
-  private afterSelect() {
-    // this.inputEl.nativeElement.blur()
+  private filterResultsWatcher() {
+    this.inputControl.valueChanges.subscribe(() => {
+      this.filterResults()
+    })
+  }
+
+
+  private filterResults() {
+    console.log('filter')
   }
 }
