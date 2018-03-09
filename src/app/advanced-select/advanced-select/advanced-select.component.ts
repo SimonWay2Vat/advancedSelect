@@ -15,7 +15,7 @@ export class AdvancedSelectComponent implements OnInit {
   @Input() placeHolder = ''
 
 
-  @Input() defaultColor = '#673AB7'
+  @Input() defaultColor = '#3F51B5'
 
 
   inputControl: FormControl
@@ -38,9 +38,6 @@ export class AdvancedSelectComponent implements OnInit {
 
 
   getColor(tag) {
-    console.log('color for ', tag)
-
-
     if (typeof tag.color === 'undefined') return this.defaultColor
 
 
@@ -68,11 +65,14 @@ export class AdvancedSelectComponent implements OnInit {
 
     const notSelectedYet = !isTagInArray(this.selectedValue, tag)
     if (notSelectedYet) {
+      if (this.single) {
+        this.selected = []
+        this.disableInput = true
+      }
+
       this.selectedValue.push(tag)
 
       this.selected = this.selectedValue
-
-      if (this.single) this.disableInput = true
     }
 
 

@@ -4,13 +4,30 @@ app-advanced-select {
     color: #fff !important;
   }
 
+
   .mat-chip-list-wrapper {
     display: inline;
   }
+
 
   input {
     margin-top: 14px !important;
     position: relative;
     top: -7px
+  }
+
+
+
+  .singleSelectIcon {
+    position: absolute;
+    right: 4px;
+    top: 13px;
+  }
+
+  .mat-chip-no-style {
+    font-size: 18px;
+    background: none !important;
+    color: black !important;
+    box-shadow: none !important;
   }
 }

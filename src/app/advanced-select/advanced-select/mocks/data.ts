@@ -6,11 +6,13 @@ export const mocksData = [
   },
   {
     label: 'item 2',
-    id: 2
+    id: 2,
+    color: '#E91E63'
   },
   {
     label: 'item 3',
-    id: 3
+    id: 3,
+    color: '#FF9800'
   },
   {
     label: 'item 4',
