@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { mocksData } from './mocks/data'
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,7 @@ export class AppComponent {
       label: 'item 1'
     }
   ]
+
+
+  options = mocksData
 }

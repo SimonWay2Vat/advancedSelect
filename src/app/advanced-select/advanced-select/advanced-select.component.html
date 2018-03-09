@@ -30,7 +30,7 @@
 
 
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
-    <mat-option *ngFor="let option of options" [value]="option">
+    <mat-option *ngFor="let option of filteredOptions | orderBy: 'searchIndex'" [value]="option">
       {{ option.label }}
     </mat-option>
   </mat-autocomplete>

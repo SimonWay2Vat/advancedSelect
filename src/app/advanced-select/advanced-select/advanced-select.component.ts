@@ -1,8 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import { mocksData } from './mocks/data'
+import { mocksData } from '../../mocks/data'
 import { getTagIndex, isTagInArray } from './helper'
 import { MatAutocompleteTrigger } from '@angular/material'
+import { Observable } from 'rxjs/Observable'
 
 
 @Component({
@@ -12,9 +13,9 @@ import { MatAutocompleteTrigger } from '@angular/material'
 export class AdvancedSelectComponent implements OnInit {
   @Input() single = false
 
+  @Input() api = ''
   @Input() placeHolder = ''
-
-
+  @Input() options: any = []
   @Input() defaultColor = '#3F51B5'
 
 
@@ -23,8 +24,7 @@ export class AdvancedSelectComponent implements OnInit {
   @ViewChild('inputEl', { read: ElementRef }) inputEl: ElementRef
   @ViewChild('inputEl', { read: MatAutocompleteTrigger }) trigger: MatAutocompleteTrigger
 
-  options: any = mocksData
-
+  filteredOptions = []
   disableInput = false
 
 
@@ -60,6 +60,8 @@ export class AdvancedSelectComponent implements OnInit {
 
 
     this.filterResultsWatcher()
+
+    this.filterResults()
   }
 
 
@@ -113,6 +115,18 @@ export class AdvancedSelectComponent implements OnInit {
 
 
   private filterResults() {
-    console.log('filter')
+    this.filteredOptions = []
+    const searchVal = this.inputEl.nativeElement.value
+    // this.filteredOptions = this.options
+
+    for (const tag of this.options) {
+      tag.searchIndex = tag.label.toLocaleLowerCase().indexOf(searchVal.toLocaleLowerCase())
+      if (tag.searchIndex > -1) {
+        this.filteredOptions.push(tag)
+      }
+    }
+
+
+    console.log('filter', this.inputEl.nativeElement.value)
   }
 }
