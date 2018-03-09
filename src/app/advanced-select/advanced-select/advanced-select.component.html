@@ -1,4 +1,4 @@
-<mat-form-field class="tagsForm">
+<mat-form-field (click)="click()" *ngIf="0">
   <mat-chip-list #chipList>
     <mat-chip
       *ngFor="let tag of selectedValue"
@@ -10,6 +10,35 @@
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
 
+    <div>
+      </div>
+
+  </mat-chip-list>
+  <input
+    #inputEl
+    matInput
+    [placeholder]="placeHolder"
+    [(formControl)]="inputControl"
+    [matAutocomplete]="auto"
+    [matChipInputFor]="chipList"
+    [matChipInputAddOnBlur]="true"
+    [hidden]="disableInput"
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{ option.label }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+<mat-form-field style="width: 100%" (click)="click()">
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let tag of selectedValue" [selectable]="true"
+              [removable]="true" (remove)="remove(tag)">
+      {{tag.label}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
     <input
       #inputEl
       matInput

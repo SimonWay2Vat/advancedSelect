@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { FormControl } from '@angular/forms'
 import { mocksData } from './mocks/data'
 import { getTagIndex, isTagInArray } from './helper'
+import { MatAutocompleteTrigger } from '@angular/material'
 
 
 @Component({
@@ -16,6 +17,7 @@ export class AdvancedSelectComponent implements OnInit {
   inputControl: FormControl
 
   @ViewChild('inputEl', { read: ElementRef }) inputEl: ElementRef
+  @ViewChild('inputEl', { read: MatAutocompleteTrigger }) trigger: MatAutocompleteTrigger
 
   options: any = mocksData
 
@@ -75,7 +77,12 @@ export class AdvancedSelectComponent implements OnInit {
   }
 
 
+  click() {
+    this.trigger.openPanel()
+  }
+
+
   private afterSelect() {
-    this.inputEl.nativeElement.blur()
+    // this.inputEl.nativeElement.blur()
   }
 }

@@ -1,3 +1,15 @@
-.mat-chip {
-  margin: 0 4px 4px 0 !important
+app-advanced-select {
+  .mat-chip {
+    margin: 0 4px 4px 0 !important
+  }
+
+  .mat-chip-list-wrapper {
+    display: inline;
+  }
+
+  input {
+    margin-top: 14px !important;
+    position: relative;
+    top: -7px
+  }
 }

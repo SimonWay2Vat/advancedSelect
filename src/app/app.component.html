@@ -1,10 +1,10 @@
 <h1>Advanced Select</h1>
-
-<app-advanced-select
-  [single]="true"
-  [(selected)]="selected"
-  placeHolder="Tags"
-></app-advanced-select>
-
+<div style="max-width: 300px">
+  <app-advanced-select
+    [single]="false"
+    [(selected)]="selected"
+    placeHolder="Tags"
+  ></app-advanced-select>
+</div>
 
 <div>{{ selected | json }} </div>
