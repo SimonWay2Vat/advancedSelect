@@ -26,8 +26,9 @@
       [hidden]="disableInput"
       (blur)="afterAdd()"
     />
-  </mat-chip-list>
 
+
+  </mat-chip-list>
 
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
     <mat-option *ngFor="let option of filteredOptions | orderBy: 'searchIndex'" [value]="option">

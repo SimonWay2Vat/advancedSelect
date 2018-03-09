@@ -1,9 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import { mocksData } from '../../mocks/data'
 import { getTagIndex, isTagInArray } from './helper'
 import { MatAutocompleteTrigger } from '@angular/material'
-import { Observable } from 'rxjs/Observable'
 
 
 @Component({
@@ -13,7 +11,7 @@ import { Observable } from 'rxjs/Observable'
 export class AdvancedSelectComponent implements OnInit {
   @Input() single = false
 
-  @Input() api = ''
+  @Input() api = null
   @Input() placeHolder = ''
   @Input() options: any = []
   @Input() defaultColor = '#3F51B5'
@@ -55,11 +53,15 @@ export class AdvancedSelectComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.selected.length && this.single) this.disableInput = true
 
 
     this.filterResultsWatcher()
+
+    if (this.api) {
+      this.options = await this.callAPI()
+    }
 
     this.filterResults()
   }
@@ -104,6 +106,9 @@ export class AdvancedSelectComponent implements OnInit {
 
   click() {
     this.trigger.openPanel()
+
+
+    this.inputControl.setErrors({backend: {someProp: "Backend message"}})
   }
 
 
@@ -114,7 +119,11 @@ export class AdvancedSelectComponent implements OnInit {
   }
 
 
-  private filterResults() {
+  private async filterResults() {
+    if (this.api) {
+      this.options = await this.callAPI()
+    }
+
     this.filteredOptions = []
     const searchVal = this.inputEl.nativeElement.value
     // this.filteredOptions = this.options
@@ -128,5 +137,11 @@ export class AdvancedSelectComponent implements OnInit {
 
 
     console.log('filter', this.inputEl.nativeElement.value)
+  }
+
+  private async callAPI() {
+    console.log('callAPI')
+
+    return []
   }
 }
