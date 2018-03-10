@@ -1,19 +1,23 @@
 app-advanced-select {
   .mat-chip {
-    margin: 0 4px 4px 0 !important;
     color: #fff !important;
   }
+  //
+  //
+  //.mat-chip-list-wrapper {
+  //  display: inline;
+  //}
+  //
+  //
+  //input {
+  //  margin-top: 14px !important;
+  //  position: relative;
+  //  top: -7px
+  //}
 
 
-  .mat-chip-list-wrapper {
-    display: inline;
-  }
-
-
-  input {
-    margin-top: 14px !important;
-    position: relative;
-    top: -7px
+  .mat-chip:not(.mat-basic-chip)+.mat-chip:not(.mat-basic-chip) {
+    margin: 0 0 4px 8px !important;
   }
 
 
@@ -22,7 +26,7 @@ app-advanced-select {
     cursor: pointer;
     position: absolute;
     right: 4px;
-    top: 13px;
+    top: 16px;
   }
 
   .mat-chip-no-style {

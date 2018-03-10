@@ -89,6 +89,8 @@ export class AdvancedSelectComponent implements OnInit {
 
   afterAdd() {
     this.inputEl.nativeElement.value = ''
+
+    this.filterResults()
   }
 
 
@@ -106,9 +108,6 @@ export class AdvancedSelectComponent implements OnInit {
 
   click() {
     this.trigger.openPanel()
-
-
-    this.inputControl.setErrors({backend: {someProp: "Backend message"}})
   }
 
 
@@ -129,14 +128,12 @@ export class AdvancedSelectComponent implements OnInit {
     // this.filteredOptions = this.options
 
     for (const tag of this.options) {
-      tag.searchIndex = tag.label.toLocaleLowerCase().indexOf(searchVal.toLocaleLowerCase())
-      if (tag.searchIndex > -1) {
+      tag.__searchIndex = tag.label.toLocaleLowerCase().indexOf(searchVal.toLocaleLowerCase())
+      const notSelectedYet = !isTagInArray(this.selectedValue, tag)
+      if (tag.__searchIndex > -1 && notSelectedYet) {
         this.filteredOptions.push(tag)
       }
     }
-
-
-    console.log('filter', this.inputEl.nativeElement.value)
   }
 
   private async callAPI() {
