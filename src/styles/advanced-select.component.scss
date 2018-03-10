@@ -2,18 +2,6 @@ app-advanced-select {
   .mat-chip {
     color: #fff !important;
   }
-  //
-  //
-  //.mat-chip-list-wrapper {
-  //  display: inline;
-  //}
-  //
-  //
-  //input {
-  //  margin-top: 14px !important;
-  //  position: relative;
-  //  top: -7px
-  //}
 
 
   .mat-chip:not(.mat-basic-chip)+.mat-chip:not(.mat-basic-chip) {
@@ -21,13 +9,13 @@ app-advanced-select {
   }
 
 
-
   .selectIcon {
     cursor: pointer;
     position: absolute;
     right: 4px;
-    top: 16px;
+    bottom: 9px;
   }
+
 
   .mat-chip-no-style {
     font-size: 18px;
