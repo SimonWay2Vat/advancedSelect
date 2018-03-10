@@ -1,0 +1,20 @@
+version: 2
+jobs:
+   unit-tests:
+     docker:
+       - image: circleci/node:latest-browsers
+     steps:
+       - checkout
+       - run:
+           name: Install npm
+           command: npm install
+       - run:
+           name: Run tests
+           command: BUILD=CI npm test
+
+workflows:
+ version: 2
+
+ test_deploy:
+   jobs:
+     - unit-tests
